@@ -72,3 +72,23 @@ def capital_quiz():
 capital_quiz()
 
 
+#Question 3:
+with open("C:\\Users\\HanQE\\Desktop\\IS111\\IS111\\Week 12\\Lab 8\\tempest.txt") as tempest_file:
+    contents = tempest_file.readlines()
+    new_string = ""
+    letter_dict = {}
+    print(new_string)
+    for i in contents:
+        new_sentence = str(i).replace("\n", " ")
+        new_string += new_sentence
+    new_list = new_string.split(" ")
+    for j in new_list:
+        if j[0].lower() not in letter_dict.keys():
+            letter_dict[j[0].lower()] = 1
+        elif j[0].lower() in letter_dict.keys():
+            value = letter_dict[j[0].lower()]
+            letter_dict[j[0].lower()] = value + 1
+    for k in letter_dict:
+        print(f"Words beginning with {k}: {letter_dict[k]}")
+        
+  
