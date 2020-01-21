@@ -92,3 +92,48 @@ with open("C:\\Users\\HanQE\\Desktop\\IS111\\IS111\\Week 12\\Lab 8\\tempest.txt"
         print(f"Words beginning with {k}: {letter_dict[k]}")
         
   
+#Question 4:
+#Author: Han Qi En
+
+#write the function
+def reverse_dict(dictionary):
+    new_dict = {}
+    for (key, value) in dictionary.items(): #using dict.items() returns a (key, value) tuple
+        for items in value:
+            # new_dict.setdefault(items, key) --> if this method is used, only one key:value will be in output
+            #setdefault() method returns the value of a key (if the key is in dictionary).
+            #If not, it inserts key with a value to the dictionary.
+            #sample output:
+            #{1: 'a', 2: 'a', 3: 'a', 4: 'c', 5: 'd', 6: 'd'}
+            #{'Economics': 'Jane', 'Physics': 'Jane', 'Chemistry': 'Jane', 'Literature': 'Mark', 'Biology': 'Mark'}
+            new_dict.setdefault(items, []).append(key) #this creates a new list each time and appends the key for each
+    return new_dict
+
+
+dict1 = reverse_dict( {"a":[1,2,3], "b":[1,2], "c":[3,4], "d":[5,6]} )
+
+student_subjects  =  reverse_dict({ "Jane":["Economics","Physics","Chemistry"], "Mark":["Literature","Chemistry","Biology"], "Sarah":["Literature","Physics","Chemistry"]} )
+
+print(dict1)
+print()
+print(student_subjects)
+
+
+#Question 5:
+with open("C:\\Users\\HanQE\\Desktop\\IS111\\IS111\\Week 12\\Lab 8\\fifa_winners.txt") as fifa_file:
+    contents = fifa_file.readlines()
+    fifa_dict = {}
+    fifa_list = []
+    new_list = []
+    for items in contents:
+        for r in (("\t", ""), ("\n","")): #this helps to replace multiple substrings at once instead of using .replace for each term
+            items = items.replace(*r)
+        fifa_list.append(items[4::])
+    fifa_list2 = list(dict.fromkeys(fifa_list)) #to remove any duplicate countries that won
+    for countries in fifa_list2:
+        win_count = fifa_list.count(countries)
+        fifa_dict[countries] = win_count
+        new_list.append((win_count, countries))
+    new_list.sort(reverse = True)
+    for i in range(0, 3):
+        print(str(new_list[i][1]) + " " + str(new_list[i][0]))
