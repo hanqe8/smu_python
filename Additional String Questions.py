@@ -52,3 +52,49 @@ m3("     you     see ? ")
 m3("")
 m3("a b c")
 m3("oneWordOnly")
+
+
+#Question 4:
+def m4(string: str, num: int): #can use this notation to define the TYPE of variable to be passed through function
+    list1 = string.split()
+    if len(list1) > (num - 1):
+        return print(list1[num - 1])
+    else:
+        return print("None")
+    
+    
+m4("I think, therefore I am! ", 3)
+m4("I think,therefore I am !", 3)
+m4(" apple-pie ", 2)
+m4("     you     see?  ", 3)
+m4("     you     see ? ", 3)
+m4("", 1)
+m4("a b c", 3)
+m4("oneWordOnly", 1)
+
+
+#Question 5:
+def m5(word: str):
+    list1 = word.split()
+    if len(list1) > 1 or word.isalpha() is False:
+        print("Invalid input")
+    elif len(list1) == 1 and word.isalpha() is True:
+        letter_list = []
+        for letters in word:
+            letter_list.append(letters.lower())
+        letter_dict = list(dict.fromkeys(letter_list)) #converting to dict then list again to get rid of dupes
+        if len(letter_dict) == len(letter_list): #check if it is the same no. of elements in each list
+            return print("True")
+        else:
+            return print("False")
+        
+m5("dermatoglyphics")
+m5("abcdefg")
+m5("duh")
+m5("string")
+m5("jAva")
+m5("jamboree")
+m5("tooth")
+m5("apple")
+
+
